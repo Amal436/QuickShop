@@ -1,9 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Rating from '@mui/material/Rating';
 
 const ProductCard = ({ product }) => {
+
+  const options = {
+    value: product.ratings,
+    readOnly: true,
+    precesion: 0.5,
+  }
   return (
     <>
-      <div className="ProductCard" to={`/product/${product._id}`}>
+      <Link className="ProductCard" to={`/product/${product._id}`}>
         <img
           src={product.images[0].url}
           alt={product.name}
@@ -13,6 +21,7 @@ const ProductCard = ({ product }) => {
         <p className="productName">{product.name}</p>
 
         <div>
+          <Rating {...options} />
           <span>{product.numberOfReviews} Reviews </span>
         </div>
 
@@ -36,7 +45,7 @@ const ProductCard = ({ product }) => {
             <span className="p__Price">${product.price}</span>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 };

@@ -6,12 +6,21 @@ import bg2 from "../../Assets/background2.jpg";
 import { getproduct } from "../../Actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../Products/productCard";
+import Header from "./Header";
+import MetaData from "../../more/Metadata";
+import Footer from "../Footer/Footer";
+import UserData from "../../more/UserData";
+import { ToastContainer, Slide } from 'react-toastify';
+import BottomTab from "../../more/BottomTab";
+
 
 const Home = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
-  const loading = useSelector((state) => state.product.loading);
-  const error = useSelector((state) => state.product.error);
+  const products = useSelector((state) => state.products.products);
+  const loading = useSelector((state) => state.products.loading);
+  const error = useSelector((state) => state.products.error);
+
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(getproduct());
@@ -19,6 +28,23 @@ const Home = () => {
   return (
     <>
       {/* Carousel */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
+      <MetaData title="Home" />
+      {isAuthenticated && <UserData user={user} />}
+      <Header />
       <div className="banner">
         <Carousel>
           <img src={bg} alt="" className="bgImg" />
@@ -55,6 +81,8 @@ const Home = () => {
       <h2 className="homeHeading">Offer Products</h2>
       <span className="cursive">No offer is running right now...</span>
       <div className="offerItems"></div>
+      <Footer />
+      <BottomTab/>
     </>
   );
 };

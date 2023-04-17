@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema({
         },
         city: {
             type: String,
-            required: true,
+            // required: true,
         },
         state: {
             type: String,
@@ -20,7 +20,7 @@ const orderSchema = new mongoose.Schema({
         },
         pinCode: {
             type: Number,
-            required: true
+            // required: true
         },
         phoneNo: {
             type: Number,
@@ -30,25 +30,25 @@ const orderSchema = new mongoose.Schema({
     orderItems: [
         {
             name: {
-                type:String,
-                required:true,
+                type: String,
+                required: true,
             },
-            price:{
+            price: {
                 type: Number,
-                required:true,
+                required: true,
             },
             quantity: {
                 type: Number,
                 required: true,
             },
             image: {
-                type:String,
+                type: String,
                 required: true,
             },
-            product:{
+            product: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Product",
-                required:true,
+                required: true,
 
             }
         }
@@ -59,49 +59,49 @@ const orderSchema = new mongoose.Schema({
         required: true,
     },
     paymentInfo: {
-        id:{
-            type:String,
-            required:true
+        id: {
+            type: String,
+            required: true
         },
-        status:{
-            type:String,
-            required:true,
+        status: {
+            type: String,
+            required: true,
         }
     },
-    paidAt:{
-        type:Date,
-        required:true,
+    paidAt: {
+        type: Date,
+        required: true,
     },
     itemsPrice: {
-        type:Number,
-        required:true,
-        default:0,
+        type: Number,
+        required: true,
+        default: 0,
     },
     taxPrice: {
-        type:Number,
-        required:true,
-        default:0,
+        type: Number,
+        required: true,
+        default: 0,
     },
-    shippingPrice:{
-        type:Number,
-        required:true,
+    shippingPrice: {
+        type: Number,
+        required: true,
         default: 0,
     },
     totalPrice: {
-        type:Number,
-        required:true,
-        default:0,
+        type: Number,
+        required: true,
+        default: 0,
     },
-    orderStatus:{
-        type:String,
-        required:true,
+    orderStatus: {
+        type: String,
+        required: true,
         default: "Processing",
     },
-    delivereAt:Date,
-    createdAt:{
-        type:Date,
-        default:Date.now()
+    delivereAt: Date,
+    createdAt: {
+        type: Date,
+        default: Date.now()
     }
 })
 
-module.exports = mongoose.model("Order",orderSchema);
+module.exports = mongoose.model("Order", orderSchema);

@@ -6,15 +6,30 @@ import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 const Header = () => {
+
+  //const switcherTab = useRef(null);
+  const { cartItems } = useSelector((state) => state.cart);
+  const { favouriteItems } = useSelector((state) => state.favourite);
+
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 100) {
+      document.querySelector(".navbar").classList.add("active");
+    } else {
+      document.querySelector(".navbar").classList.remove("active");
+    }
+  })
+
   return (
     <div className="Header">
       {/* Header topBar */}
       <div className="Header__topbar space__beetween">
         {/* topbar Left */}
         <div className="logo pxy__10">
-          <a href="/">
+          <Link to="/">
             <img
               src="http://wp.alithemes.com/html/nest/demo/assets/imgs/theme/logo.svg"
               alt=""
@@ -26,7 +41,7 @@ const Header = () => {
                 cursor: "pointer",
               }}
             />
-          </a>
+          </Link>
         </div>
         {/* topbar Middle */}
 
@@ -89,7 +104,7 @@ const Header = () => {
         </div>
       </div>
       {/* Header Navbar */}
-      <div className="navbar flex pz__10 space__beetween">
+      <div className="navbar flex pz__10 space__beetween" >
         <div
           className="navigation"
           style={{
@@ -107,37 +122,37 @@ const Header = () => {
               justifyContent: "center",
             }}
           >
-            <a href="/">
+            <Link to="/">
               <li>Home</li>
-            </a>
-            <a href="/about">
+            </Link>
+            <Link to="/about">
               <li>About</li>
-            </a>
-            <a href="/Products">
+            </Link>
+            <Link to="/products">
               <li>Products</li>
-            </a>
-            <a href="/creator">
+            </Link>
+            <Link to="/creator">
               <li>Become A Seller</li>
-            </a>
-            <a href="/faq">
+            </Link>
+            <Link to="/faq">
               <li>Users Rules</li>
-            </a>
-            <a href="/contact">
+            </Link>
+            <Link to="/contact">
               <li>Contact</li>
-            </a>
+            </Link>
           </ul>
         </div>
 
         <div className="rightoption flex align__items__center">
           <div>
-            <a href="/search">
-              <SearchIcon style={{ width: "35px", height: "35px",color:"black" }} />
-            </a>
+            <Link to="/search">
+              <SearchIcon style={{ width: "35px", height: "35px", color: "black" }} />
+            </Link>
           </div>
           <div className="heart__products flex pointer relative">
-            <a href="/favourites">
-              <FavoriteBorderIcon style={{ width: "30px", height: "30px",color:"black"}} />
-            </a>
+            <Link to="/favourites">
+              <FavoriteBorderIcon style={{ width: "30px", height: "30px", color: "black" }} />
+            </Link>
             <div
               className="heart__numbers"
               style={{
@@ -153,14 +168,14 @@ const Header = () => {
                 right: "3.5%",
               }}
             >
-              <span>6</span>
+              <span>{favouriteItems.length}</span>
             </div>
           </div>
           <div className="cart__items flex align__items__center">
             <div className="cart__items flex pointer relative">
-              <a href="/cart">
-                <ShoppingCartIcon style={{ width: "30px", height: "30px",color:"black" }} />
-              </a>
+              <Link to="/cart">
+                <ShoppingCartIcon style={{ width: "30px", height: "30px", color: "black" }} />
+              </Link>
               <div
                 className="heart__numbers"
                 style={{
@@ -176,14 +191,14 @@ const Header = () => {
                   right: "3.5%",
                 }}
               >
-                <span>5</span>
+                <span>{cartItems.length}</span>
               </div>
             </div>
           </div>
           <div className="user__account flex pointer">
-            <a href="/login">
-              <PersonOutlineIcon style={{ width: "35px", height: "35px",color:"black"}} />
-            </a>
+            <Link to="/login">
+              <PersonOutlineIcon style={{ width: "35px", height: "35px", color: "black" }} />
+            </Link>
           </div>
         </div>
       </div>

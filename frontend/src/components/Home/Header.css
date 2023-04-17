@@ -1,3 +1,8 @@
+.Header{
+    position: sticky;
+    z-index: 10;
+}
+
 .inputBox > span{
     font-family: "Roboto";
     animation: sliding 14s linear infinite;
